@@ -199,17 +199,17 @@ void setup() {
 
   Serial.println("Initializing Bluetooth A2DP...");
 
-  // Configurează I2S cu pini custom
-  auto cfg = i2s.defaultConfig(TX_MODE);  // TX_MODE pentru output spre DAC
-  cfg.pin_bck = 18;   // Pin pentru Bit Clock (BCK) - conectează la BCLK pe ES9023P
-  cfg.pin_ws = 19;    // Pin pentru Word Select (WS/LRCK) - conectează la LRCK pe ES9023P
-  cfg.pin_data = 5;   // Pin pentru Data Out (DOUT) - conectează la DATA pe ES9023P
-  // Configurează formatul audio
-  cfg.sample_rate = 44100;          // Rate de sampling (44.1kHz standard pentru Bluetooth audio)
-  cfg.bits_per_sample = 16;         // 16 biți per sample (ES9023P suportă și 24/32 dacă vrei să testezi)
-  cfg.channels = 2;                 // Stereo (2 canale)
-  cfg.i2s_format = I2S_PHILIPS_FORMAT;  // Format standard I2S (compatibil cu ES9023P)
-  // Inițializează I2S cu configurația
+  // Setup I2S with custom pins
+  auto cfg = i2s.defaultConfig(TX_MODE);   // TX_MODE for DAC output
+  cfg.pin_bck = 18;                        // Bit Clock (BCK) pin - connect it to BCLK on ES9023P
+  cfg.pin_ws = 19;                         // Word Select (WS/LRCK) pin - connect it to LRCK on ES9023P
+  cfg.pin_data = 5;                        // Data Out (DOUT) pin - connect it to DATA on ES9023P
+  // Setup audio format
+  cfg.sample_rate = 44100;                 // Sampling Rate (44.1kHz default for Bluetooth audio)
+  cfg.bits_per_sample = 16;                // 16 bit per sample
+  cfg.channels = 2;                        // Stereo (2 channels)
+  cfg.i2s_format = I2S_PHILIPS_FORMAT;     // Standard I2S format for ES9023P
+  // Activate I2S configuration
   i2s.begin(cfg);
 
 //  a2dp_sink.set_rssi_active(true);
